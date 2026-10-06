@@ -1,0 +1,162 @@
+/* ===== [수정가이드] 1. 컬러/폰트 변수: 여기만 바꾸면 전체 테마 변경 ===== */
+:root{
+  --black:#050505; --dark:#151515; --white:#fff; --gray:#A0A0A0; --red:#E10600;
+  --font:'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif;
+  --head-h:70px;
+}
+/* ===== 2. 공통 ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--head-h)}
+body{background:var(--black);color:var(--white);font-family:var(--font);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{display:block;width:100%;height:100%;object-fit:cover;background:linear-gradient(135deg,#222,#111)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:120px 0;position:relative}
+.alt{background:var(--dark)}
+.center{text-align:center}
+.title{font-size:clamp(32px,5vw,60px);font-weight:900;line-height:1.1;margin-bottom:40px}
+.title small{display:block;color:var(--red);font-size:14px;letter-spacing:.3em;margin-bottom:12px}
+.btn{background:var(--red);color:#fff;border:0;padding:16px 36px;font:700 16px var(--font);letter-spacing:.1em;cursor:pointer;
+  clip-path:polygon(0 0,100% 0,92% 100%,0 100%);transition:.3s}
+.btn:hover{background:#fff;color:var(--red);transform:translateX(6px)}
+
+/* ===== 3. 헤더/네비게이션 (.active = 현재 섹션) ===== */
+.header{position:fixed;top:0;left:0;right:0;height:var(--head-h);z-index:50;display:flex;justify-content:space-between;
+  align-items:center;padding:0 32px;background:rgba(5,5,5,.8);backdrop-filter:blur(8px);border-bottom:1px solid #222}
+.logo{font-weight:900;font-size:24px;color:var(--red);font-style:italic}
+.logo span{color:#fff;font-size:12px;margin-left:8px;letter-spacing:.2em}
+.nav ul{display:flex;gap:32px}
+.nav a{font-size:14px;font-weight:700;letter-spacing:.15em;color:var(--gray);padding:6px 0;border-bottom:2px solid transparent;transition:.3s}
+.nav a:hover,.nav a.active{color:#fff;border-color:var(--red)}
+.burger{display:none;background:none;border:0;cursor:pointer}
+.burger i{display:block;width:26px;height:2px;background:#fff;margin:6px 0}
+
+/* ===== 4. HOME ===== */
+.hero{height:100vh;min-height:600px;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:-5%;width:110%;height:110%;opacity:.1;transition:transform .2s}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--black) 10%,transparent 80%),linear-gradient(0deg,var(--black),transparent 40%)}
+.speed-lines{position:absolute;inset:0;z-index:1;opacity:.35;
+  background:repeating-linear-gradient(115deg,transparent 0 60px,rgba(225,6,0,.5) 60px 62px,transparent 62px 160px);animation:lines 3s linear infinite}
+@keyframes lines{to{background-position:-320px 0}}
+.hero-inner{position:relative;z-index:2;padding:0 8vw;transition:transform .2s}
+.eyebrow{color:var(--red);letter-spacing:.35em;font-size:13px;font-weight:700}
+.hero h1{font-size:clamp(80px,17vw,240px);line-height:.9;font-weight:900;font-style:italic;transform:skewX(-8deg)}
+.hero h1 em{display:block;font-size:.3em;font-style:normal;letter-spacing:.1em;color:var(--red)}
+.tagline{margin:24px 0 36px;font-size:clamp(16px,2vw,22px);color:#ddd}
+.scroll-hint{position:absolute;z-index:2;bottom:28px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.3em;color:var(--gray)}
+.scroll-hint::after{content:"";display:block;width:1px;height:40px;background:var(--red);margin:8px auto 0;animation:drop 1.5s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ===== 5. STORY ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split p{color:#ccc;margin-bottom:18px}
+.facts{margin-top:28px;border-left:3px solid var(--red);padding-left:20px}
+.facts b{color:var(--red);margin-right:12px}
+.media{aspect-ratio:3/4;overflow:hidden;clip-path:polygon(10% 0,100% 0,100% 100%,0 100%)}
+.media img{transition:transform 1.2s}
+.media.show img{transform:scale(1.08)}  /* 스크롤 진입 시 줌 */
+
+/* ===== 6. DRIVERS ===== */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{position:relative;aspect-ratio:3/4;overflow:hidden;border-bottom:4px solid var(--red)}
+.card img{transition:transform .6s}
+.card:hover img{transform:scale(1.12)}
+.info{position:absolute;inset:auto 0 0;padding:20px;background:linear-gradient(0deg,#000 20%,transparent)}
+.info span{color:var(--red);font-size:13px;font-weight:700}
+.info p{max-height:0;opacity:0;overflow:hidden;font-size:14px;color:#ddd;transition:.4s}
+.card:hover .info p{max-height:100px;opacity:1;margin-top:8px}  /* Hover 시 정보 표시 */
+
+/* ===== 7. RACE ===== */
+.race{overflow:hidden}
+.race-bg{position:absolute;inset:0;opacity:.25}
+.race .wrap{position:relative}
+.speed{font-weight:900;font-style:italic}
+.num{font-size:clamp(100px,22vw,280px);line-height:1;color:var(--red)}
+.speed sup{font-size:clamp(20px,3vw,36px);margin-left:8px}
+.track{height:4px;background:#222;margin:40px 0;position:relative;overflow:hidden}
+.track-bar{position:absolute;inset:0;width:0;background:var(--red);box-shadow:0 0 16px var(--red);transition:width 2.5s cubic-bezier(.2,.8,.2,1)}
+.race.run .track-bar{width:100%}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stats b{display:block;font-size:clamp(32px,5vw,56px)}
+.stats span{color:var(--gray);font-size:14px}
+
+/* ===== 8. GALLERY ===== */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.g-item{aspect-ratio:4/3;overflow:hidden;position:relative;cursor:pointer}
+.g-item img{transition:transform .5s,filter .5s;filter:grayscale(.8)}
+.g-item:hover img{transform:scale(1.1);filter:none}
+.g-item::after{content:"";position:absolute;inset:0;border:0 solid var(--red);transition:.3s}
+.g-item:hover::after{border-width:5px}
+
+/* ===== 9. 푸터/모달 ===== */
+.footer{padding:40px 24px;text-align:center;color:var(--gray);font-size:13px;border-top:1px solid #222}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-box{position:relative;width:min(960px,100%)}
+.video{aspect-ratio:16/9;background:#000}
+.video iframe{width:100%;height:100%;border:0}
+.close{position:absolute;top:-44px;right:0;background:none;border:0;color:#fff;font-size:36px;cursor:pointer}
+
+/* ===== 10. 스크롤 Fade-in (JS가 .show 추가) ===== */
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s,transform .9s}
+.reveal.show{opacity:1;transform:none}
+
+/* ===== 11. 반응형: 태블릿 ≤1024 / 모바일 ≤768 ===== */
+@media(max-width:1024px){.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .section{padding:80px 0}
+  .header{padding:0 20px}
+  .burger{display:block}
+  .nav{position:fixed;top:var(--head-h);left:0;right:0;background:#050505;max-height:0;overflow:hidden;transition:max-height .4s}
+  .nav.open{max-height:360px}
+  .nav ul{flex-direction:column;gap:0;padding:10px 20px}
+  .nav a{display:block;padding:14px 0}
+  .split{grid-template-columns:1fr;gap:40px}
+  .info p{max-height:100px;opacity:1;margin-top:8px}  /* 모바일은 hover 없으므로 항상 표시 */
+  .stats{grid-template-columns:1fr}
+}
+@media(max-width:480px){.cards,.grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* ===== 12. 맨 위로 이동 버튼 ===== */
+.top-btn{
+  position:fixed;
+  right:28px;
+  bottom:28px;
+  width:50px;
+  height:50px;
+  border:1px solid var(--red);
+  background:rgba(5,5,5,.85);
+  color:var(--red);
+  font-size:24px;
+  font-weight:900;
+  cursor:pointer;
+  z-index:90;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(20px);
+  transition:opacity .3s, transform .3s, visibility .3s, background .3s;
+}
+
+.top-btn.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.top-btn:hover{
+  background:var(--red);
+  color:#fff;
+  transform:translateY(-4px);
+}
+
+@media(max-width:768px){
+  .top-btn{
+    right:18px;
+    bottom:18px;
+    width:46px;
+    height:46px;
+    font-size:21px;
+  }
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
